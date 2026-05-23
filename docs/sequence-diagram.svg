@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 480" font-family="system-ui, -apple-system, sans-serif">
+  <rect width="750" height="480" fill="#f8fafc" rx="12"/>
+
+  <!-- Title -->
+  <text x="375" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">ACP Session Lifecycle — Sequence Diagram</text>
+
+  <!-- Actors -->
+  <rect x="50" y="40" width="100" height="30" rx="6" fill="#059669"/>
+  <text x="100" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">MCP Client</text>
+  <rect x="220" y="40" width="120" height="30" rx="6" fill="#7c3aed"/>
+  <text x="280" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">mcp-acp-workspace</text>
+  <rect x="420" y="40" width="100" height="30" rx="6" fill="#d97706"/>
+  <text x="470" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">adk-acp</text>
+  <rect x="600" y="40" width="100" height="30" rx="6" fill="#2563eb"/>
+  <text x="650" y="60" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Gemini LLM</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="70" x2="100" y2="460" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="280" y1="70" x2="280" y2="460" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="470" y1="70" x2="470" y2="460" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+  <line x1="650" y1="70" x2="650" y2="460" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4"/>
+
+  <!-- 1. create_acp_session -->
+  <line x1="100" y1="95" x2="280" y2="95" stroke="#059669" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="190" y="90" text-anchor="middle" font-size="9" fill="#059669">create_acp_session</text>
+
+  <line x1="280" y1="110" x2="470" y2="110" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="105" text-anchor="middle" font-size="9" fill="#7c3aed">initialize (version negotiation)</text>
+
+  <line x1="470" y1="125" x2="280" y2="125" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="375" y="120" text-anchor="middle" font-size="9" fill="#d97706">capabilities</text>
+
+  <line x1="280" y1="140" x2="470" y2="140" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="135" text-anchor="middle" font-size="9" fill="#7c3aed">session/create</text>
+
+  <line x1="470" y1="155" x2="280" y2="155" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="375" y="150" text-anchor="middle" font-size="9" fill="#d97706">session_id</text>
+
+  <line x1="280" y1="170" x2="100" y2="170" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="190" y="165" text-anchor="middle" font-size="9" fill="#7c3aed">session active</text>
+
+  <!-- 2. send_acp_prompt -->
+  <line x1="100" y1="200" x2="280" y2="200" stroke="#059669" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="190" y="195" text-anchor="middle" font-size="9" fill="#059669">send_acp_prompt</text>
+
+  <line x1="280" y1="215" x2="470" y2="215" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="210" text-anchor="middle" font-size="9" fill="#7c3aed">session/prompt (text)</text>
+
+  <line x1="470" y1="230" x2="650" y2="230" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="560" y="225" text-anchor="middle" font-size="9" fill="#d97706">generate (prompt + tools)</text>
+
+  <line x1="650" y1="250" x2="470" y2="250" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="560" y="245" text-anchor="middle" font-size="9" fill="#2563eb">tool_call: list_directory</text>
+
+  <!-- Tool execution -->
+  <rect x="440" y="258" width="60" height="16" rx="3" fill="#fef3c7" stroke="#d97706"/>
+  <text x="470" y="270" text-anchor="middle" font-size="8" fill="#92400e">execute</text>
+
+  <line x1="470" y1="280" x2="650" y2="280" stroke="#d97706" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="560" y="275" text-anchor="middle" font-size="9" fill="#d97706">tool_result</text>
+
+  <line x1="650" y1="300" x2="470" y2="300" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="560" y="295" text-anchor="middle" font-size="9" fill="#2563eb">agent response (streaming)</text>
+
+  <line x1="470" y1="315" x2="280" y2="315" stroke="#d97706" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="375" y="310" text-anchor="middle" font-size="9" fill="#d97706">notifications (chunks)</text>
+
+  <line x1="280" y1="330" x2="100" y2="330" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="3" marker-end="url(#arr)"/>
+  <text x="190" y="325" text-anchor="middle" font-size="9" fill="#7c3aed">stream_acp_events</text>
+
+  <!-- 3. Permission request -->
+  <line x1="470" y1="360" x2="280" y2="360" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="355" text-anchor="middle" font-size="9" fill="#dc2626">permission request (file_write)</text>
+
+  <line x1="280" y1="375" x2="100" y2="375" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="190" y="370" text-anchor="middle" font-size="9" fill="#dc2626">request_acp_permission</text>
+
+  <line x1="100" y1="390" x2="280" y2="390" stroke="#059669" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="190" y="385" text-anchor="middle" font-size="9" fill="#059669">approve</text>
+
+  <line x1="280" y1="405" x2="470" y2="405" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="400" text-anchor="middle" font-size="9" fill="#7c3aed">permission granted</text>
+
+  <!-- 4. Terminate -->
+  <line x1="100" y1="435" x2="280" y2="435" stroke="#059669" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="190" y="430" text-anchor="middle" font-size="9" fill="#059669">terminate_acp_session</text>
+
+  <line x1="280" y1="450" x2="470" y2="450" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="375" y="445" text-anchor="middle" font-size="9" fill="#7c3aed">session/cancel (notification)</text>
+
+  <defs>
+    <marker id="arr" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+      <polygon points="0 0, 6 2.5, 0 5" fill="#475569"/>
+    </marker>
+  </defs>
+</svg>

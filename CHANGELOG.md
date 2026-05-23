@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0] - 2026-05-23
+
+### Added
+- Sequence diagram (SVG) showing full ACP session lifecycle
+- Verified output examples with real Gemini 2.5 Flash + tool execution
+- API reference documentation for all 9 tools
+- Protocol version updated to 1.0 (aligned with adk-acp)
+
+### Verified
+- `adk-acp` server: initialize → session/create → session/prompt → session/close
+- Tool use: Gemini calls `list_directory`, reads actual filesystem
+- Streaming: `agent_message_chunk` notifications delivered correctly
+
 ## [1.0.0] - 2026-05-23
 
 ### Added

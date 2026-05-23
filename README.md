@@ -114,6 +114,37 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 }
 ```
 
+## Sequence Diagram
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/zavora-ai/mcp-acp-workspace/main/docs/sequence-diagram.svg" alt="ACP Session Sequence Diagram" width="750"/>
+</p>
+
+## Verified Output — ADK-ACP with Gemini 2.5 Flash
+
+Tested end-to-end with `adk-acp` server, real Gemini LLM calls, and tool execution:
+
+```
+=== ACP Session Lifecycle ===
+
+1. initialize → capabilities received
+   { "streaming": true, "tool_use": true, "tool_names": ["read_file", "list_directory"] }
+
+2. session/create → session_id: 6f519835-3217-4021-90a2-f63a1683e774
+
+3. session/prompt ("List the files in the current directory")
+   Tool call: list_directory({})
+   Agent: I found 6 entries in the current directory:
+     • Cargo.toml (file)
+     • target (directory)
+     • Cargo.lock (file)
+     • README.md (file)
+     • .env.example (file)
+     • src (directory)
+
+4. session/close → ✓
+```
+
 ## Quick Start
 
 ```
@@ -163,7 +194,9 @@ Coding agent requests permission → Governance policy evaluation → Approve/De
 
 | Document | Description |
 |----------|-------------|
+| [API Reference](docs/api-reference.md) | All 9 tools with parameters and returns |
 | [Architecture](docs/architecture.svg) | System diagram |
+| [Sequence Diagram](docs/sequence-diagram.svg) | Full ACP session lifecycle |
 | [ACP Protocol](https://agentclientprotocol.com/) | Official ACP specification |
 
 ## Design Decisions

@@ -1,6 +1,6 @@
 [package]
 name = "mcp-acp-workspace"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 authors = ["James Karanja <james.karanja@zavora.ai>"]
 description = "ACP Workspace Control Plane — enterprise management of ACP coding delegates with permission gates, patch review, and governance"
