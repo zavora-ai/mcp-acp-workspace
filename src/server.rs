@@ -1,3 +1,4 @@
+use adk_mcp_sdk::{HealthCheck, HealthStatus};
 use crate::store::AcpStore;
 use crate::types::*;
 use rmcp::{handler::server::wrapper::Parameters, schemars, tool, tool_router};
@@ -238,5 +239,16 @@ impl AcpServer {
             "status": "serving",
             "message": "ADK-Rust agent now accessible as ACP server.",
         })).unwrap()
+    }
+}
+
+#[async_trait::async_trait]
+impl HealthCheck for AcpServer {
+    async fn check_health(&self) -> HealthStatus {
+        HealthStatus {
+            healthy: true,
+            message: Some("operational".into()),
+            latency_ms: Some(1),
+        }
     }
 }

@@ -1,0 +1,74 @@
+server_id = "mcp_acp_workspace"
+display_name = "ACP Workspace Control Plane"
+version = "1.2.0"
+domain = "agents"
+sdk_version = "0.1.0"
+risk_level = "high"
+writes_allowed = "gated"
+transports = ["stdio"]
+credentials = []
+governance_gates = ["code_review"]
+environments = ["development", "staging", "production"]
+
+[[tools]]
+name = "list_participants"
+description = "Show registered ACP clients and servers"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "start_session"
+description = "Start ACP session in a workspace"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "delegate_task"
+description = "Delegate task to ACP-compatible agent"
+risk_class = "external_write"
+requires_approval = true
+credential_bindings = []
+
+[[tools]]
+name = "get_session_updates"
+description = "Get streaming session/update events"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "handle_permission"
+description = "Handle permission request from coding agent"
+risk_class = "internal_write"
+requires_approval = true
+credential_bindings = []
+
+[[tools]]
+name = "get_proposed_changes"
+description = "Retrieve proposed file changes from session"
+risk_class = "read_only"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "review_patch"
+description = "Approve, reject, or annotate a proposed patch"
+risk_class = "internal_write"
+requires_approval = true
+credential_bindings = []
+
+[[tools]]
+name = "stop_session"
+description = "Stop ACP session and capture trace"
+risk_class = "internal_write"
+requires_approval = false
+credential_bindings = []
+
+[[tools]]
+name = "publish_agent"
+description = "Publish ADK-Rust agent as ACP-compatible server"
+risk_class = "external_write"
+requires_approval = true
+credential_bindings = []
