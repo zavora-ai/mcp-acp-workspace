@@ -77,7 +77,7 @@ pub struct AcpServer {
     pub store: std::sync::Arc<AcpStore>,
 }
 
-#[tool_router(server_handler)]
+#[tool_router]
 impl AcpServer {
     #[tool(description = "Show registered ACP clients and servers")]
     fn list_acp_connections(&self) -> String {
@@ -251,4 +251,11 @@ impl HealthCheck for AcpServer {
             latency_ms: Some(1),
         }
     }
+}
+
+adk_mcp_sdk::mcp_2026_server! {
+    server: AcpServer,
+    task_tools: [],
+    approval_tools: [],
+    cache_ttl_ms: 60_000,
 }
