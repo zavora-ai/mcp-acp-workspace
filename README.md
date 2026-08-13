@@ -213,7 +213,7 @@ Coding agent requests permission → Governance policy evaluation → Approve/De
 ```toml
 server_id = "mcp_acp_workspace"
 display_name = "ACP Workspace MCP"
-version = "1.0.0"
+version = "1.3.0"
 domain = "protocol"
 risk_level = "high"
 writes_allowed = "gated"
